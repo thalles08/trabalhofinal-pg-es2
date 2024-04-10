@@ -1,2 +1,2 @@
-# trabalhofinal-pg-es2
-Trabalho final desenvolvido para a disciplina de Programação II do curso de Engenharia de Software - Unoeste
+# atv4prog2es
+Atividade 4 da disciplina de Programação II - UNOESTE
