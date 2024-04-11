@@ -6,7 +6,7 @@ import Rodape from "./rodape";
 export default function Pagina(props) {
     return (
         <div className="pagina-container">
-            <Cabecalho titulo="Sistema de Gestão Empresarial"/>
+            <Cabecalho />
             <Menu />
             <div className="container">
                 {props.children}

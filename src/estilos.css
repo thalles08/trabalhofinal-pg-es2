@@ -8,6 +8,23 @@
     flex: 1;
 }
 
-.Rodape {
+.rodape {
     margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(236, 235, 235);
+    height: 50px;
+    color: rgb(115, 115, 115);
+    padding-left: 100px;
+}
+
+.topo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(46, 63, 244);
+    height: 150px;
+    color: aliceblue;
+    justify-content: center;
+    padding-left: 100px;
 }

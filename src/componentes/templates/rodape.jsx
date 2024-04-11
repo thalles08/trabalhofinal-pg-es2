@@ -2,7 +2,10 @@ import { Alert } from "react-bootstrap";
 
 export default function Rodape(props) {
     return (
-        <Alert variant="light" className="text-center"><p>{props?.titulo}</p></Alert>
+        <div className="rodape">
+            <p>Desenvolvido pelo aluno Thalles F. S. Souza para a disciplina Programação 2, Módulo 1 - UNOESTE</p>
+        </div>
+
     );
 }
 
