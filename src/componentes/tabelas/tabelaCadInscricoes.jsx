@@ -1,14 +1,32 @@
 import { Button, Table } from "react-bootstrap";
+import urlBaseInscricao from "../../utilitarios/configuracoes";
 
-export default function TabelaCadFornecedores(props) {
-
-  function excluirFornecedor(cnpj){
-    const novaLista = props.listaFornecedores.filter(fornecedor => fornecedor.cnpj !== cnpj);
-    props.setListaFornecedores(novaLista);
+export default function TabelaCadInscricoes(props) {
+  
+  function excluirInscricao(id) {
+    fetch(urlBaseInscricao, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id })
+    })
+      .then(resposta => resposta.json())
+      .then((dados) => {
+        if (dados.status) {
+          const novaLista = props.listaInscricoes.filter(
+            (inscricao) => inscricao.id !== id
+          );
+          props.setListaInscricoes(novaLista);
+        } else {
+          alert(dados.mensagem);
+        }
+      })
+      .catch((erro) => {
+        alert("Não foi possível conectar ao backend. erro: " + erro.message);
+      });
   }
 
-  function alterarFornecedor(fornecedor){
-    props.setFornecedorSelecionado(fornecedor);
+  function alterarInscricao(inscricao) {
+    props.setInscricaoSelecionada(inscricao);
     props.setModoEdicao(true);
     props.setExibirTabela(false);
   }
@@ -21,44 +39,41 @@ export default function TabelaCadFornecedores(props) {
           props.setExibirTabela(false);
         }}
       >
-        Cadastrar novo Fornecedor
+        Cadastrar nova Inscrição
       </Button>
       <Table className="mt-3" striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
-            <th>CNPJ</th>
-            <th>Razão Social</th>
-            <th>Nome Fantasia</th>
-            <th>Endereço</th>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>CPF</th>
+            <th>Endereço completo</th>
             <th>Telefone</th>
             <th>E-mail</th>
-            <th>Nome representante</th>
-            <th>Telefone representante</th>
-            <th>E-mail representante</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {props.listaFornecedores?.map((fornecedor, index) => {
+          {props.listaInscricoes?.map((inscricao, index) => {
             return (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{fornecedor.cnpj}</td>
-                <td>{fornecedor.razaoSocial}</td>
-                <td>{fornecedor.nomeFantasia}</td>
-                <td>{fornecedor.endereco}</td>
-                <td>{fornecedor.telefone}</td>
-                <td>{fornecedor.email}</td>
-                <td>{fornecedor.nomeRepresentante}</td>
-                <td>{fornecedor.telefoneRepresentante}</td>
-                <td>{fornecedor.emailRepresentante}</td>
+                <td>{inscricao.nome}</td>
+                <td>{inscricao.dataNascimento}</td>
+                <td>{inscricao.cpf}</td>
+                <td>{inscricao.endereco}</td>
+                <td>{inscricao.telefone}</td>
+                <td>{inscricao.email}</td>
                 <td>
-                  <Button 
+                  <Button
                     variant="danger"
-                    onClick={()=>{
-                      excluirFornecedor(fornecedor.cnpj)
-                    }}>
+                    onClick={() => {
+                      if(window.confirm("Deseja excluir a inscrição?")){
+                        excluirInscricao(inscricao.id);
+                      }
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -72,11 +87,12 @@ export default function TabelaCadFornecedores(props) {
                     </svg>{" "}
                     excluir
                   </Button>{" "}
-                  <Button 
-                    onClick={()=>{
-                      alterarFornecedor(fornecedor);
-                    }}                  
-                    variant="primary">
+                  <Button
+                    onClick={() => {
+                      alterarInscricao(inscricao);
+                    }}
+                    variant="primary"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -101,4 +117,5 @@ export default function TabelaCadFornecedores(props) {
       </Table>
     </div>
   );
+
 }

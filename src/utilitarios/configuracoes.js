@@ -1,2 +1,5 @@
 const urlBaseFuncionario = "http://localhost:4000/funcionario";
-export default urlBaseFuncionario;
+
+
+const urlBaseInscricao = "http://localhost:4000/inscricao";
+export default urlBaseInscricao;
