@@ -10,7 +10,7 @@ export default function Menu() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/inscricao">Inscrição</Nav.Link>
-            <Nav.Link href="#pricing">Cancelar inscrição</Nav.Link>
+            <Nav.Link href="/excluir">Cancelar inscrição</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

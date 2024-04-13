@@ -51,6 +51,7 @@ export default function TabelaCadInscricoes(props) {
             <th>Endereço completo</th>
             <th>Telefone</th>
             <th>E-mail</th>
+            <th>Vaga</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -63,8 +64,9 @@ export default function TabelaCadInscricoes(props) {
                 <td>{inscricao.dataNascimento}</td>
                 <td>{inscricao.cpf}</td>
                 <td>{inscricao.endereco}</td>
-                <td>{inscricao.telefone}</td>
+                <td>{inscricao.telefone}</td>              
                 <td>{inscricao.email}</td>
+                <td>{inscricao.vaga}</td>                
                 <td>
                   <Button
                     variant="danger"

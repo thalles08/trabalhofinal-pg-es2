@@ -17,6 +17,7 @@ export default function FormCadInscricoes(props) {
           endereco: "",
           telefone: "",
           email: "",
+          vaga: "",
         }
   );
 
@@ -180,6 +181,27 @@ export default function FormCadInscricoes(props) {
             Informe o e-mail.
           </Form.Control.Feedback>
         </Form.Group>
+      </Row>
+      <Row className="mb-3">
+        <Form.Group as={Col} md="6" controlId="formGridState">
+            <Form.Label>Vaga</Form.Label>
+            <Form.Select 
+            defaultValue="Escolha a vaga para se candidatar"
+            type="text"
+            placeholder="Informe o e-mail"
+            value={inscricao.vaga}
+            name="vaga"
+            id="vaga"
+            onChange={manipularMudanca}
+            required>
+              <option>Escolha uma vaga</option>
+              <option>Desenvolvedor Web Remoto</option>
+              <option>Assistente Virtual Remoto</option>
+              <option>Redator de Conteúdo Remoto</option>
+              <option>Designer Gráfico Remoto</option>
+              <option>Especialista em Marketing Digital Remoto</option>
+            </Form.Select>
+          </Form.Group>
       </Row>
       <Button type="submit">
         {props.modoEdicao ? "Alterar" : "Cadastrar"}
