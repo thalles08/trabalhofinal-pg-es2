@@ -3,54 +3,54 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import urlBaseInscricao from "../../utilitarios/configuracoes";
 
-export default function FormExclusaoInscricoes() {
+export default function FormExclusaoInscricoes(props) {
   const [cpf, setCpf] = useState("");
   const [vaga, setVaga] = useState("");
   const [mensagem, setMensagem] = useState("");
 
-async function excluirInscricao(cpf, vaga) {
-  try {
-    const resposta = await fetch(urlBaseInscricao, {
+  function excluirInscricao(cpf, vaga) {
+    fetch(urlBaseInscricao, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cpf: cpf, vaga: vaga })
-    });
-    const dados = await resposta.json();
-    if (dados.status) {
-      setMensagem("Inscrição excluída com sucesso!");
-    } else {
-      setMensagem(dados.mensagem);
-    }
-  } catch (erro) {
-    setMensagem('Não foi possível conectar ao backend. Erro: ' + erro.message);
+    })
+      .then(resposta => resposta.json())
+      .then((dados) => {
+        if (dados.status) {
+          setMensagem("Inscrição excluída com sucesso!");
+        } else {
+          alert(dados.mensagem);
+        }
+      })
+      .catch((erro) => {
+        alert("Não foi possível conectar ao backend. erro: " + erro.message);
+      });
   }
-}
 
-  function handleCpfChange(evento) {
+  function manipularMudancaCPF(evento) {
     setCpf(evento.target.value);
   }
 
-  function handleVagaChange(evento) {
+  function manipulaMudancaVaga(evento) {
     setVaga(evento.target.value);
   }
 
-  function handleSubmit(evento) {
+  function manipularSubmissao(evento) {
     evento.preventDefault();
-    excluirInscricao();
   }
 
   return (
     <div>
       <h5 className="mt-5">Excluir Inscrição</h5>
       <p className="mt-3">Deseja excluir sua inscrição em alguma vaga? Informe o CPF e a vaga em que deseja excluir a inscrição:</p>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={manipularSubmissao}>
         <Form.Group controlId="formCpf">
           <Form.Label className="mt-3">CPF</Form.Label>
           <Form.Control
             type="text"
             placeholder="Digite o CPF"
             value={cpf}
-            onChange={handleCpfChange}
+            onChange={manipularMudancaCPF}
             required
           />
         </Form.Group>
@@ -59,7 +59,7 @@ async function excluirInscricao(cpf, vaga) {
           <Form.Control
             as="select"
             value={vaga}
-            onChange={handleVagaChange}
+            onChange={manipulaMudancaVaga}
             required
           >
             <option value="">Selecione a vaga</option>

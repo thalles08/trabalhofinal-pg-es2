@@ -201,6 +201,9 @@ export default function FormCadInscricoes(props) {
               <option>Designer Gráfico Remoto</option>
               <option>Especialista em Marketing Digital Remoto</option>
             </Form.Select>
+            <Form.Control.Feedback type="invalid">
+            Selecione uma vaga.
+          </Form.Control.Feedback>
           </Form.Group>
       </Row>
       <Button type="submit">
