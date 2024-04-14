@@ -1,5 +1,3 @@
-import { Alert } from "react-bootstrap";
-
 export default function Rodape(props) {
     return (
         <div className="rodape">

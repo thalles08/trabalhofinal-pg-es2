@@ -2,7 +2,6 @@ import Cabecalho from "./cabecalho";
 import Menu from "./menu";
 import Rodape from "./rodape";
 
-
 export default function Pagina(props) {
     return (
         <div className="pagina-container">
